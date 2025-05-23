@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import LoadingPage from '../loading/LoadingPage';
+import LoadingPage from '../loading/Loadingpage.jsx';
 
 const Spline = lazy(() => import('@splinetool/react-spline'));
 
