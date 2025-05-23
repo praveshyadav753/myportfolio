@@ -1,0 +1,6 @@
+.carddiv{
+    /* border-radius: 40px; */
+    border-top-right-radius: 50px;
+    margin-bottom: 19px;
+    backdrop-filter: blur(1px);
+}

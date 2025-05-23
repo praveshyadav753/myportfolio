@@ -1,0 +1,12 @@
+
+
+
+
+.carousel-card-wrapper {
+  /* This wrapper helps center the ProjectCard before GSAP moves it. */
+  /* Make sure ProjectCard has 'absolute' positioning within this wrapper */
+  position: absolute; /* Crucial for GSAP to control its position */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); /* Center the wrapper initially */
+}

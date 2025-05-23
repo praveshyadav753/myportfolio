@@ -1,0 +1,67 @@
+/* src/css/AboutMe.css */
+
+.about-me-section {
+    /* Basic styling for the section */
+    padding: 80px 0; /* Example padding */
+    font-family: 'Inter', sans-serif; /* Use a modern font, ensure it's imported in your main CSS or index.html */
+    box-sizing: border-box; /* Ensures padding/border are included in the element's total width and height */
+    overflow-x: hidden; /* Prevent horizontal scroll from animations */
+}
+
+.about-me-section h1,
+.about-me-section h2 {
+    /* Basic heading styles */
+    margin-bottom: 20px;
+}
+
+.content-block {
+    /* Styles for the main content divisions */
+    margin-bottom: 40px;
+    opacity: 0; /* Start hidden for animation */
+    /* Add max-width and center if you want content narrower than the parent */
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.skill-tag {
+    /* Styles for individual skill tags */
+    white-space: nowrap; /* Prevent tags from breaking lines */
+    display: inline-block; /* For proper spacing and margin */
+    /* Initial state for GSAP */
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+/* Add responsive adjustments */
+@media (max-width: 768px) {
+    .about-me-section h1 {
+        font-size: 3rem; /* Adjust font size for smaller screens */
+    }
+    .about-me-section h2 {
+        font-size: 2rem;
+    }
+    .about-me-section p, .about-me-section ul {
+        font-size: 0.95rem;
+    }
+    .skill-tag {
+        font-size: 0.85rem;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-me-section h1 {
+        font-size: 2.5rem;
+    }
+    .about-me-section h2 {
+        font-size: 1.75rem;
+    }
+    .about-me-section p, .about-me-section ul {
+        font-size: 0.9rem;
+    }
+    .skill-tag {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+}
