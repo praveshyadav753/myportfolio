@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 
 const skills = [
-  { name: "WebGL", level: 60 },
+  { name: "Python", level: 60 },
+  { name: "DjNGO", level: 60 },
   { name: "ReactJS", level: 75 },
   { name: "JavaScript", level: 90 },
   { name: "HTML + CSS", level: 95 },
@@ -15,7 +16,7 @@ const ProfileCard = () => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 1.2, ease: "easeOut" }}
       viewport={{ once: true }}
-      className="bg-black border border-cyan-400 text-neonBlue rounded-xl shadow-glow font-orbitron p-6 w-[350px] md:w-[400px] mx-auto relative overflow-hidden"
+      className="bg-black border border-cyan-400 text-neonBlue rounded-xl shadow-glow font-orbitron p-6  w-[320px] md:w-[400px] mx-auto relative overflow-hidden"
     >
       {/* Glowing scanline effect */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-cyan-500 opacity-5 animate-pulse pointer-events-none" />

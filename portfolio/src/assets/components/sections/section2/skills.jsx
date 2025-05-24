@@ -58,7 +58,7 @@
 
         {/* This section element will now be the snap target and the pinned element */}
         <section id="skills-section" ref={skillsSectionRef} className="snap-section ">
-          <div ref={contentWrapperRef} className="p-7 flex flex-col  justify-center" style={{ minHeight: '100vh', width: '100%' }}>
+          <div ref={contentWrapperRef} className="p-2 sm:p-7 md:p-8 flex flex-col  justify-center items-center sm:items-start" style={{ minHeight: '100vh', width: '100%' }}>
             <ProfileCard />
             <SkillsCard />
             

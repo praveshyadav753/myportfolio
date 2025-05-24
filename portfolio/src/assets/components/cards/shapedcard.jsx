@@ -9,13 +9,12 @@ const ShapedCard = ({
   height = 'auto', // Auto height, or provide specific height
   title,       // Text for the tab
   children,    // Content inside the card
-  className = 'cardmain', // Additional classes for the container
+  className = 'cardmain', 
   cardBgColor = '#ADD8E6', // Light blue background color
   cardBorderColor = '#00C8FF', // Bright blue border color
   tabBgColor = '#007bff', // Default blue for tab background
   tabTextColor = '#ffffff', // Default white for tab text
   tabPadding = 'px-4 py-2', // Tailwind classes for tab padding
-  // No animation props here directly for the reveal
 }) => {
   const [showGlow, setShowGlow] = useState(false);
   const { ref, inView } = useInView({
@@ -40,13 +39,12 @@ const ShapedCard = ({
   return (
     <div
       ref={ref} // Attach ref to the outermost div for glow detection
-      className={`relative carddiv ${className}`}
+      className={`relative carddiv w-[350px] sm:w-[380px] md:w-[430px] lg:w-[500px]   ${className}`}
       style={{
-        width: `${width}px`,
+       
         height: height === 'auto' ? 'auto' : `${height}px`,
       }}
     >
-      {/* SVG for the main card background and border */}
       <svg
         width="100%"
         height="100%"

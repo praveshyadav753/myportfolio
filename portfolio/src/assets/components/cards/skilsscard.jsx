@@ -11,6 +11,7 @@ const skillsData = [
   { name: 'HTML + CSS', level: 95 },
   { name: 'Django', level: 60 },
   { name: 'MySQL', level: 80 },
+  { name: 'REST API', level: 50 },
 ];
 
 const SkillBar = ({ skill, level }) => {
@@ -36,7 +37,7 @@ const SkillBar = ({ skill, level }) => {
           variants={barVariants}
           initial="hidden"
           whileInView="visible" // Animate to visible when in view
-          viewport={{ once: false, amount: 0.5 }} // Re-animate every time, when 50% visible
+          viewport={{ once: false, amount: 0.4 }} // Re-animate every time, when 50% visible
         ></motion.div>
       </div>
     </div>
@@ -55,7 +56,7 @@ const SkillsCard = () => {
         type: "spring",
         damping: 20,
         stiffness: 100,
-        duration: 0.8, // Duration in seconds
+        duration: 0.5, // Duration in seconds
         delay: 0.1,    // Delay before card reveal
       },
     },
@@ -72,8 +73,7 @@ const SkillsCard = () => {
     >
       <ShapedCard
         title="SKILLS"
-        width={380}
-        height={300}
+        height={360}
         cardBgColor="#1A2B3D"
         cardBorderColor="#00C8FF"
         tabBgColor="#007bff"

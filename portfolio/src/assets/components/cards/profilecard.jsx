@@ -33,7 +33,6 @@ const ProfileCard = () => {
     >
       <ShapedCard
         title="PROFILE" // The text for the tab
-        width={380} // Example width
         height={180} // Example height
         cardBgColor="#1A2B3D" // Matches image background
         cardBorderColor="#00C8FF" // Corrected color for glow
