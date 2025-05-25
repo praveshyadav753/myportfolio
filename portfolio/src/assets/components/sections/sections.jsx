@@ -4,8 +4,8 @@ import Section1 from './section1/section1page';
 import Home from '../home'; // Assuming Home is a layout component
 import '../../css/Sections.css';
 import TransitionManager from './section2/skills';
-import HalfCircularCarousel from './section3/Projectcarseoul';
-import Carousel from './section3/Projectcarseoul';
+import RadialProjectList from './section3/Projectcarseoul';
+import Section3 from './section3/section3';
 import AboutSection from './section4/AboutMe';
 import ContactSection from './section5/contactme';
 
@@ -20,7 +20,7 @@ function Sections() {
 
       <TransitionManager/>
       
-      <Carousel/>
+      <Section3/>
 
       <AboutSection/>
 

@@ -39,7 +39,7 @@ const ShapedCard = ({
   return (
     <div
       ref={ref} // Attach ref to the outermost div for glow detection
-      className={`relative carddiv w-[350px] sm:w-[380px] md:w-[430px] lg:w-[500px]   ${className}`}
+      className={`relative carddiv w-[340px] sm:w-[380px] md:w-[430px] lg:w-[500px]   ${className}`}
       style={{
        
         height: height === 'auto' ? 'auto' : `${height}px`,

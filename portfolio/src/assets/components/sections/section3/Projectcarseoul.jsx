@@ -1,15 +1,17 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { gsap } from 'gsap';
-import { debounce } from 'lodash';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ProjectCard from './projectcard';
-import '../../../css/HalfCircularCarousel.css';
 
-const projects = [
+gsap.registerPlugin(ScrollTrigger);
+
+const RadialProjectList = () => {
+  const projects = [
   {
     id: 1,
     title: 'QuickServe',
     description: 'A service booking platform that allows users to register, book services, and manage appointments. Includes admin panel and service provider registration.',
-    imageUrl: 'https://via.placeholder.com/400x200/4B0082/FFFFFF?text=QuickServe',
+    imageUrl: '/Quickserve.png',
 technologies: ['React.js', 'Django', 'Tailwind CSS', 'PostgreSQL','Jwt Authentication'],
     liveUrl: 'https://example.com/quickserve',
     githubUrl: 'https://github.com/praveshyadav753/QuickServe_App'
@@ -18,9 +20,9 @@ technologies: ['React.js', 'Django', 'Tailwind CSS', 'PostgreSQL','Jwt Authentic
     id: 2,
     title: 'SmartBites',
     description: 'A mobile web app that provides nutrition facts, ingredients, and health ratings for products. Features barcode scanning and personalized recommendations.',
-    imageUrl: 'https://via.placeholder.com/400x200/228B22/FFFFFF?text=SmartBites',
-    technologies: ['React.js', 'Django', 'Tailwind CSS, Restful API'],
-    liveUrl: 'https://example.com/smartbites',
+    imageUrl: '/smartbites.png',
+    technologies: ['React.js', 'Django', 'Tailwind CSS', 'Restful API'],
+    liveUrl: 'https://smartbites-alpha.vercel.app/',
     githubUrl: 'https://github.com/praveshyadav753/Smartbites'
   },
   {
@@ -43,191 +45,138 @@ technologies: ['React.js', 'Django', 'Tailwind CSS', 'PostgreSQL','Jwt Authentic
   }
 ];
 
+  const containerRef = useRef(null);
+  const cardRefs = useRef([]);
+  const totalCards = projects.length;
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [center, setCenter] = useState({
+    x: window.innerWidth / 2,
+    y: window.innerHeight * 1.3
+  });
 
-const Carousel = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const carouselRef = useRef(null);
-  const projectRefs = useRef([]);
-  const avatarRef = useRef(null);
+  const angleGap = (Math.PI * 2) / totalCards;
 
-  const CARD_WIDTH = 300;
-  const CARD_HEIGHT = 200;
+  const positionCards = useCallback(
+    (index, customCenter = center) => {
+      const radiusX = Math.min(customCenter.x - 200, 1000);
+      const radiusY = Math.min(customCenter.y - 100, 500);
 
-  // --- GSAP Animation Logic for Radial Movement ---
-  const animateCards = useCallback(() => {
-    const totalProjects = projects.length;
+      cardRefs.current.forEach((card, i) => {
+        if (!card) return;
 
-    
-    const radius = 900; 
-    const arcAngle = 140;
-    const anglePerCard = arcAngle / (totalProjects > 1 ? (totalProjects - 1) : 1);
+        const relativeIndex = (i - index + totalCards) % totalCards;
+        const angle = relativeIndex * angleGap - Math.PI / 2;
 
-   
-    const startAngleOffset = arcAngle / 2;
+        const x = customCenter.x + radiusX * Math.cos(angle);
+        const y = customCenter.y + radiusY * Math.sin(angle);
 
-    projectRefs.current.forEach((card, index) => {
-      if (!card) return;
+        const currentX = card._gsTransform?.x ?? 0;
+        const currentY = card._gsTransform?.y ?? 0;
 
-      const tl = gsap.timeline({ defaults: { duration: 0.8, ease: 'power3.out' } });
-
-      let relativeIndex = index - currentIndex;
-
-      // Handle wrapping for continuous carousel effect
-      if (relativeIndex > totalProjects / 2) {
-        relativeIndex -= totalProjects;
-      } else if (relativeIndex < -totalProjects / 2) {
-        relativeIndex += totalProjects;
-      }
-
-      const currentCardAngle = relativeIndex * anglePerCard;
-      
-      const angleRad = (currentCardAngle * Math.PI) / 180;
-
-      const xCircle = radius * Math.sin(angleRad); // Use sin for X to spread horizontally
-      const yCircle = -radius * Math.cos(angleRad); // Use -cos for Y to make it arc downwards from the top of the circle
-
-      
-      const translateXAdjust = -CARD_WIDTH / 70;
-      const translateYAdjust = -CARD_HEIGHT / 2;
-
-      let finalX = xCircle + translateXAdjust;
-      let finalY = yCircle + translateYAdjust + radius; // Add radius to pull the arc down
-
-      const distance = Math.abs(relativeIndex);
-      let scale = 1;
-      let opacity = 1;
-      let zIndex = 20;
-      let rotation = relativeIndex * 10; 
-
-      if (distance === 1) {
-        scale = 0.8;
-        opacity = 0.8;
-        zIndex = 15;
-        // Adjusted nudges for side cards to make them follow the arc more naturally
-        finalX += (relativeIndex > 0 ? 1 : -1) * 60; 
-        finalY += 30; 
-      } else if (distance === 2) {
-        scale = 0.6;
-        opacity = 0.6;
-        zIndex = 10;
-        finalX += (relativeIndex > 0 ? 1 : -1) * 120;
-        finalY += 80; 
-      } else if (distance > 2) {
-        scale = 0.4;
-        opacity = 0.2;
-        zIndex = 5;
-        finalX += (relativeIndex > 0 ? 1 : -1) * 200; 
-        finalY += 150; 
-      }
-
-      tl.to(card, {
-        x: finalX,
-        y: finalY,
-        scale,
-        opacity,
-        rotation,
-        zIndex,
-        display: opacity > 0.05 ? 'flex' : 'none',
+        if (Math.abs(currentX - x) > 2 || Math.abs(currentY - y) > 2) {
+          gsap.to(card, {
+            duration: 0.8,
+            x,
+            y,
+            ease: 'power3.out',
+            transformOrigin: '50% 50%',
+            overwrite: 'auto',
+          });
+        }
       });
-    });
+    },
+    [angleGap, center, totalCards]
+  );
 
-    if (avatarRef.current) {
-      gsap.to(avatarRef.current, {
-        y: -10,
-        repeat: 1,
-        yoyo: true,
-        duration: 0.3,
-        ease: 'power1.inOut',
-        delay: 0.1,
+  // Reposition cards when active index changes
+  useEffect(() => {
+    positionCards(activeIndex);
+  }, [activeIndex, positionCards]);
+
+  // ScrollTrigger
+  useEffect(() => {
+    let lastIndex = -1;
+
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: containerRef.current,
+        start: 'top top',
+        end: `+=${projects.length * 100}`,
+        pin: true,
+        scrub: true,
+        onUpdate: (self) => {
+          const scrollProgress = self.progress;
+          const index = Math.floor(scrollProgress * (projects.length - 1));
+          if (index !== lastIndex) {
+            lastIndex = index;
+            setActiveIndex(index);
+          }
+        }
       });
-    }
-  }, [currentIndex]);
+    }, containerRef);
 
+    return () => ctx.revert();
+  }, [projects.length]);
+
+  // Recalculate center on resize
   useEffect(() => {
-    animateCards();
-  }, [currentIndex, animateCards]);
-
-  const goToNext = useCallback(() => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length);
-  }, []);
-
-  const goToPrev = useCallback(() => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + projects.length) % projects.length);
-  }, []);
-
-  const handleScroll = useCallback(debounce((event) => {
-    if (event.deltaY > 0) {
-      goToNext();
-    } else {
-      goToPrev();
-    }
-    event.preventDefault();
-  }, 150, { leading: true, trailing: false }), [goToNext, goToPrev]);
-
-  useEffect(() => {
-    const carouselElement = carouselRef.current;
-    if (carouselElement) {
-      carouselElement.addEventListener('wheel', handleScroll, { passive: false });
-    }
-    return () => {
-      if (carouselElement) {
-        carouselElement.removeEventListener('wheel', handleScroll);
-      }
+    const updateLayout = () => {
+      const newCenter = {
+        x: window.innerWidth / 2,
+        y: window.innerHeight * 1.3
+      };
+      setCenter(newCenter);
+      positionCards(activeIndex, newCenter);
     };
-  }, [handleScroll]);
+
+    window.addEventListener('resize', updateLayout);
+    return () => window.removeEventListener('resize', updateLayout);
+  }, [activeIndex, positionCards]);
 
   return (
-    <div id='projects' className="relative w-full h-screen flex flex-col items-center justify-center bg-gray-900 overflow-hidden">
+    <div id='projects' ref={containerRef} className="relative w-full h-screen flex flex-col items-center justify-center bg-gray-900 overflow-hidden">
       {/* Semi-circular background base */}
       <div className="absolute bottom-0 w-4/5 h-1/2 bg-gradient-to-t from-blue-900 to-transparent rounded-t-full origin-bottom scale-x-150 transform-gpu z-0"></div>
 
-      {/* Avatar Container */}
-      
+      <div className="relative p-2 w-full h-screen flex flex-col items-center">
+        <h2 className="text-white text-3xl md:text-5xl font-bold mb-10 text-center z-10 relative">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400 hidden md:inline"> What I Have Built</span>
+          <span className="inline md:hidden bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">My Work</span>
+        </h2>
 
-      <div
-        ref={carouselRef}
-        className="carousel-main-area relative w-full h-full flex items-center justify-center"
-        style={{
-          perspective: '1000px',
-        }}
-      >
         {projects.map((project, index) => (
           <div
-            key={project.id}
-            ref={(el) => (projectRefs.current[index] = el)}
-            className="carousel-card-wrapper absolute flex items-center justify-center"
-            style={{
-              width: `${CARD_WIDTH}px`,
-              height: `${CARD_HEIGHT}px`,
-              
-              bottom: '0',
-              left: '50%',
-              transform: 'translateX(-50%)',
-            }}
-            onClick={() => setCurrentIndex(index)}
+            key={index}
+            ref={(el) => (cardRefs.current[index] = el)}
+            className="w-[340px] h-[420px] absolute"
+            style={{ top: 0, left: 0, transform: 'translate(-50%, -50%)', willChange: 'transform' }}
           >
-            <ProjectCard project={project} isActive={index === currentIndex} />
+            <ProjectCard project={project} isActive={index === activeIndex} />
           </div>
         ))}
-      </div>
 
-      {/* Navigation Buttons */}
-      <div className="absolute bottom-5 z-40 flex space-x-70">
-        <button
-          onClick={goToPrev}
-          className="p-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg transition-all duration-300"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
-        </button>
-        <button
-          onClick={goToNext}
-          className="p-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg transition-all duration-300"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
-        </button>
+        {/* Optional manual nav buttons */}
+        <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-10 md:space-x-40">
+          <button
+            onClick={() => setActiveIndex((i) => Math.max(0, i - 1))}
+            className="p-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            onClick={() => setActiveIndex((i) => Math.min(projects.length - 1, i + 1))}
+            className="p-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   );
 };
 
-export default Carousel;
+export default RadialProjectList;

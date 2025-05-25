@@ -1,33 +1,97 @@
+import React from 'react';
+import { MdWeb } from 'react-icons/md';
+import { DiGithubBadge } from 'react-icons/di';
+
 const ProjectCard = ({ project, isActive }) => {
   return (
     <div
-      className={`absolute w-64 h-80 rounded-lg p-4 flex flex-col items-center justify-between transition-all duration-300 ease-in-out
-        ${isActive ? 'scale-110 shadow-lg ring-4 ring-blue-400' : 'scale-90 opacity-70'}
+      className={`
+        relative w-full max-w-[340px] max-h-[425px] rounded-lg p-4 flex flex-col justify-between
+        transition-all duration-300 ease-in-out transform
+        ${isActive ? 'scale-100 shadow-xl ring-4 ring-blue-400' : 'scale-80 opacity-40'}
       `}
       style={{
         backgroundColor: '#1a2b3d',
         border: '2px solid #00C8FF',
         color: 'white',
         textAlign: 'center',
-        boxShadow: isActive ? '0 0 15px #00C8FF, 0 0 30px #00C8FF' : 'none',
+        boxShadow: isActive ? '0 7px 100px #00C8FF, 0 0 1px #00C8FF' : 'none',
+        overflow: 'hidden',
       }}
     >
-      <img src={project.imageUrl} alt={project.title} className="w-full h-20 object-cover rounded mb-2" />
-      <h3 className="text-lg font-bold text-blue-300 mb-1">{project.title}</h3>
-      <p className="text-sm text-gray-300 mb-2 line-clamp-3">{project.description}</p>
-      <div className="flex flex-wrap justify-center gap-1 mb-2">
-        {project.technologies.map((tech, i) => (
-          <span key={i} className="text-xs bg-gray-700 text-gray-200 px-2 py-1 rounded-full">
-            {tech}
-          </span>
-        ))}
+      {/* Main Content */}
+      <div className="flex flex-col items-center flex-grow mb-4">
+        {/* Image */}
+        <div
+          className="w-full rounded-md overflow-hidden"
+          style={{ aspectRatio: '1.95 / 1' }}
+        >
+          <img
+            src={project.imageUrl}
+            alt={project.title}
+            className="object-cover w-full h-full"
+            loading="lazy"
+          />
+        </div>
+
+        {/* Title */}
+        <h3 className="text-xl font-bold text-blue-300 p-2 leading-tight">
+          {project.title}
+        </h3>
+
+        {/* Description */}
+        <p className="text-sm text-gray-300 mb-3 line-clamp-4 overflow-hidden">
+          {project.description}
+        </p>
+
+        {/* Technologies */}
+        <div className="flex flex-wrap justify-center gap-2 mt-auto mb-1">
+          {project.technologies.map((tech, i) => (
+            <span
+              key={i}
+              className="text-xs bg-gray-700 text-gray-200 px-2 py-0.5 rounded-full whitespace-nowrap"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
       </div>
-      <div className="flex gap-2">
-        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-1 rounded-full transition-colors">
+
+      {/* Buttons */}
+      <div
+        className="
+          w-full pt-2 border-t border-gray-400 flex justify-around items-center
+          bg-gray-800 bg-opacity-40 rounded-b-lg pb-2
+        "
+      >
+        <a
+          href={project.liveUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="
+            flex items-center gap-1 bg-blue-600 text-white font-semibold
+            px-4 py-2 rounded-full shadow-md
+            hover:bg-blue-700 hover:shadow-lg transform hover:scale-105
+            transition-all duration-200 ease-in-out text-sm
+          "
+        >
+          <MdWeb size={18} />
           Live
         </a>
-        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="bg-gray-600 hover:bg-gray-700 text-white text-xs px-3 py-1 rounded-full transition-colors">
-          GitHub
+
+        <a
+          href={project.githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="
+            flex items-center gap-1 bg-gray-700 text-white font-semibold
+            px-4 py-2 rounded-full shadow-md
+            hover:bg-gray-800 hover:shadow-lg transform hover:scale-105
+            transition-all duration-200 ease-in-out text-sm
+          "
+        >
+          <DiGithubBadge size={20} />
+          Code
         </a>
       </div>
     </div>

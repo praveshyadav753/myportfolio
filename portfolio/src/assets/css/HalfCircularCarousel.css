@@ -1,12 +1,39 @@
-
-
-
-
-.carousel-card-wrapper {
-  /* This wrapper helps center the ProjectCard before GSAP moves it. */
-  /* Make sure ProjectCard has 'absolute' positioning within this wrapper */
-  position: absolute; /* Crucial for GSAP to control its position */
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%); /* Center the wrapper initially */
+.scroller-container {
+  height: 100vh; /* Make the container fill the viewport height initially */
+  overflow: hidden; /* Hide overflow from rotating divs */
+  position: relative;
 }
+
+.scroller {
+  position: sticky; /* Make the scroller sticky at the top */
+  top: 0;
+  width: 100%;
+  height: 100vh; /* Adjust height to fill the viewport */
+  display: flex;
+  justify-content: center; /* Center the slides horizontally */
+  align-items: center; /* Center the slides vertically */
+  perspective: 1000px; /* Add perspective for 3D effect */
+}
+
+.slide {
+  position: absolute; /* Position slides absolutely within the scroller */
+  width: 300px;
+  height: 200px;
+  background-color: #3498db;
+  border: 2px solid #2980b9;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform-style: preserve-3d; /* Ensure 3D transformations are applied correctly */
+  will-change: transform; /* Optimize for animation performance */
+}
+
+/* You might need to adjust the initial positions of slides if they are overlapping */
+/* For example, for a fan-like effect, you might want to position them slightly */
+/* differently or apply a translation along with rotation. */
+/* The transformOrigin: "0% 2300px" is key here, which sets the rotation point far below */
+/* This will create the fan-like or radial effect. */
