@@ -32,7 +32,7 @@ function Sections() {
       start: "1% top ",
       end: "bottom bottom",
       scrub: 0.1,
-      markers: true,
+      markers: false,
        snap: {
         snapTo: 1, 
         duration: 0.1,
