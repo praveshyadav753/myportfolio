@@ -2,7 +2,6 @@ import { useRef, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Stars } from "@react-three/drei";
 import * as THREE from "three";
-import Spline from "@splinetool/react-spline";
 import Particle from "./ilustrationspline";
 
 // Main Background Component
@@ -16,12 +15,9 @@ export default function ThreeJSBackground() {
 
   return (
     <div className="absolute top-0 left-0 w-full h-full  ">
-      {/* Spline Background – behind Canvas */}
-      <div className=" spinspline absolute top-0 left-0 w-full h-full z-0 " style={{filter:'blur(150px)'}}>
-        <Spline scene="https://prod.spline.design/lVjz9070ukWWQHO9/scene.splinecode" />
-      </div>
+      
       <div className="star absolute top-0 left-0 w-full h-full z-1">
-        <Particle />
+        
       </div>
 
       {/* Canvas Background – on top of Spline */}
@@ -38,15 +34,7 @@ export default function ThreeJSBackground() {
             <pointLight position={[10, 10, 10]} intensity={1} />
             <directionalLight position={[0, 5, 5]} intensity={0.5} />
 
-            <Stars
-              radius={100}
-              depth={50}
-              count={5000}
-              factor={4}
-              saturation={0}
-              fade
-              speed={1}
-            />
+            
 
             <OrbitControls
               enableZoom={false}

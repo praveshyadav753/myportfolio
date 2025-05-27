@@ -29,7 +29,7 @@ technologies: ['React.js', 'Django', 'Tailwind CSS', 'PostgreSQL','Jwt Authentic
     id: 3,
     title: 'ParkIt',
     description: 'A web-based car parking management system featuring real-time slot monitoring, surveillance integration, and automated parking using EasyOCR for number plate recognition.',
-    imageUrl: 'https://via.placeholder.com/400x200/1E90FF/FFFFFF?text=ParkIt',
+    imageUrl: '/boutme.png',
     technologies: ['Python', 'yolov5', 'EasyOCR', 'HTML', 'CSS', 'JavaScript'],
     liveUrl: 'https://example.com/parkit',
     githubUrl: 'https://github.com/praveshyadav753/advance-parking-management-system'
@@ -38,7 +38,7 @@ technologies: ['React.js', 'Django', 'Tailwind CSS', 'PostgreSQL','Jwt Authentic
     id: 4,
     title: 'Music Player System',
     description: 'A modern music player with support for audio playback, playlist management, shuffle, repeat, and volume control using the HTML5 Audio API.',
-    imageUrl: 'https://via.placeholder.com/400x200/000000/FFFFFF?text=Music+Player',
+    imageUrl: '/forground.png',
     technologies: ['Html', 'HTML5 Audio', 'Css', 'JavaScript'],
     liveUrl: 'https://example.com/music-player',
     githubUrl: 'https://github.com/praveshyadav753/music--player'
@@ -93,7 +93,7 @@ technologies: ['React.js', 'Django', 'Tailwind CSS', 'PostgreSQL','Jwt Authentic
     positionCards(activeIndex);
   }, [activeIndex, positionCards]);
 
-  // ScrollTrigger
+  ScrollTrigger
   useEffect(() => {
     let lastIndex = -1;
 
@@ -136,7 +136,7 @@ technologies: ['React.js', 'Django', 'Tailwind CSS', 'PostgreSQL','Jwt Authentic
   return (
     <div id='projects' ref={containerRef} className="relative w-full h-screen flex flex-col items-center justify-center bg-gray-900 overflow-hidden">
       {/* Semi-circular background base */}
-      <div className="absolute bottom-0 w-4/5 h-1/2 bg-gradient-to-t from-blue-900 to-transparent rounded-t-full origin-bottom scale-x-150 transform-gpu z-0"></div>
+      <div className="absolute bottom-0 w-4/5 h-1/2 bg-gradient-to-t from-gray-900 via-blue-900 to-transparent  rounded-t-full origin-bottom  transform-gpu z-0"></div>
 
       <div className="relative p-2 w-full h-screen flex flex-col items-center">
         <h2 className="text-white text-3xl md:text-5xl font-bold mb-10 text-center z-10 relative">

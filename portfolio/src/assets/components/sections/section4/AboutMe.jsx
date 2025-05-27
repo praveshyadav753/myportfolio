@@ -46,8 +46,7 @@ const AboutSection = () => {
         show: { opacity: 1, y: 0, rotateX: 0, transition: { type: "spring", stiffness: 100, damping: 10 } },
     };
 
-    // Note: textVariants is not being used in this version of the code,
-    // but kept for reference if you want to apply it elsewhere.
+    
     const textVariants = {
         hidden: { opacity: 0, y: 50 },
         show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 10, delay: 0.2 } }
@@ -136,7 +135,7 @@ const AboutSection = () => {
 
             {/* Parallax Background Elements */}
             <motion.div 
-                className="absolute inset-0 z-10 bg-[url('/images/circuit-board.svg')] bg-repeat opacity-20"
+                className="absolute inset-0 z-10 bg-[url('')] bg-repeat opacity-20"
                 style={{ y: yBg, opacity }}
             />
 

@@ -1,0 +1,87 @@
+/* RadialProjectList.css */
+
+/* Base container for projects (your existing div) */
+.radial-project-list-container {
+  /* This class will be applied to your main div */
+  background-color: #0c002b; /* A very dark, deep purple/blue */
+  position: relative; /* Crucial for absolute positioning of background elements */
+  overflow: hidden; /* Keeps background elements within bounds */
+}
+
+/* Common styles for the glowing background elements */
+.background-aura {
+  position: absolute;
+  border-radius: 50%; /* Make them circular */
+  filter: blur(120px); /* Intense blur for a soft glow */
+  opacity: 0.4; /* Subtle transparency */
+  mix-blend-mode: screen; /* How they blend with each other and the background */
+  pointer-events: none; /* Do not block mouse events */
+  transform: translate(-50%, -50%); /* For easier positioning with top/left */
+  will-change: transform, opacity; /* Optimize for animation */
+}
+
+/* Specific background aura styles (colors, initial sizes) */
+.aura-1 {
+  background: radial-gradient(circle, #ff00ff, transparent 70%); /* Bright Magenta */
+  width: 700px;
+  height: 700px;
+  top: 10%;
+  left: 20%;
+}
+
+.aura-2 {
+  background: radial-gradient(circle, #00ffff, transparent 70%); /* Cyan */
+  width: 600px;
+  height: 600px;
+  top: 70%;
+  left: 80%;
+}
+
+.aura-3 {
+  background: radial-gradient(circle, #ffea00, transparent 70%); /* Bright Yellow */
+  width: 500px;
+  height: 500px;
+  top: 40%;
+  left: 50%;
+}
+
+.aura-4 {
+  background: radial-gradient(circle, #8a2be2, transparent 70%); /* Blue Violet */
+  width: 550px;
+  height: 550px;
+  top: 25%;
+  left: 70%;
+}
+
+.aura-5 {
+  background: radial-gradient(circle, #ff6347, transparent 70%); /* Tomato (Red-Orange) */
+  width: 450px;
+  height: 450px;
+  top: 80%;
+  left: 25%;
+}
+
+/* --- Optional: Add a subtle particle effect (if desired) --- */
+/* This is more complex and typically involves canvas or many small divs */
+/* For simplicity, we'll omit a full particle system here, but you can integrate libraries like particles.js */
+
+/* Ensure the main content (cards, title, buttons) is above the background */
+.radial-project-content {
+    position: relative; /* Set to relative so z-index works within this context */
+    z-index: 10; /* Ensures content is above background elements (z-index 1-5) */
+}
+
+/* Adjustments for the semi-circular background base */
+/* Make sure its z-index is lower than content but can be higher than or same as 'background-aura' */
+.semi-circle-base {
+    position: absolute;
+    bottom: 0;
+    width: 90%; /* Adjusted for better appearance */
+    max-width: 1200px; /* Limit its max size */
+    height: 60%; /* Adjusted height */
+    background: radial-gradient(ellipse at bottom, rgba(30, 0, 70, 0.8), transparent 70%); /* Darker, more atmospheric gradient */
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0; /* More pronounced ellipse */
+    transform-origin: bottom center;
+    transform: scaleX(1.1); /* Slightly stretch it */
+    z-index: 5; /* Above base, potentially above some low-z-index auras */
+}

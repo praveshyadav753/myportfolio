@@ -1,26 +1,21 @@
-/* 
-.snap-container {
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
+.section1{
+  scrollbar-width: none;
   scroll-behavior: smooth;
-  scroll-snap-stop: always; 
-
-  scrollbar-width: none; 
-  -ms-overflow-style: none;
+  scroll-snap-type: y mandatory;
+  overflow: scroll;
+  height: 100vh;
 }
 
-.snap-container::-webkit-scrollbar {
-  display: none;
-}
-
-.snap-section {
-  scroll-snap-align: start; 
+.section2 {
+  min-height: 100vh;
+  scroll-snap-align: center;
   position: relative;
-  min-height: 100vh; 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  height: 100vh;
 }
- */
+
+/* Disable snapping on mobile */
+@media (max-width: 768px) {
+  .sections-container {
+    scroll-snap-type: none;
+  }
+}

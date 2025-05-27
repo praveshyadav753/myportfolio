@@ -1,0 +1,109 @@
+/* section1.css */
+
+/*
+  The main div in Section1.js will have bg-gray-900,
+  so no need for a base background class here.
+*/
+
+/* Styles for the small, shaded, premium gradient elements */
+.premium-shaded-gradient {
+  position: absolute;
+  border-radius: 50%; /* Still circular for soft edges */
+  filter: blur(80px); /* Moderate blur: enough for glow, but shape is still hinted */
+  opacity: 0.2; /* Very subtle, low opacity for depth and premium feel */
+  mix-blend-mode: screen; /* Or 'lighten' - good for adding light on dark */
+  pointer-events: none; /* Crucial: ensures these don't block mouse events */
+  transform: translate(-50%, -50%); /* For easier positioning with left/top % */
+  animation: premium-gradient-animation 15s infinite alternate ease-in-out; /* Gentle, slow animation */
+  will-change: transform, opacity; /* Optimize for animation performance */
+}
+
+/* Specific premium gradient elements: colors, sizes, positions */
+.premium-gradient-1 {
+  background: radial-gradient(circle at 70% 30%, #5d007c, #000000 70%); /* Deep Purple radiating from top-right of its own div */
+  width: 450px;
+  height: 450px;
+  top: 15%;
+  left: 25%;
+  box-shadow: 0 0 50px rgba(93, 0, 124, 0.4); /* Subtle matching outer glow/shade */
+}
+
+.premium-gradient-2 {
+  background: radial-gradient(circle at 30% 70%, #004d40, #000000 70%); /* Dark Teal radiating from bottom-left of its own div */
+  width: 500px;
+  height: 500px;
+  top: 50%;
+  left: 90%;
+  animation-delay: 3s;
+  box-shadow: 0 0 50px rgba(0, 77, 64, 0.9);
+}
+
+.premium-gradient-3 {
+  background: radial-gradient(circle at 50% 50%, #7c0262, #410026 70%); /* Deep Burgundy/Maroon */
+  width: 400px;
+  height: 400px;
+  top: 35%;
+  left: 5%;
+  animation-delay: 6s;
+  box-shadow: 0 0 50px rgba(124, 10, 2, 0.4);
+}
+
+.premium-gradient-4 {
+  background: radial-gradient(circle at 60% 40%, #002c52, #000000 70%); /* Dark Navy Blue */
+  width: 480px;
+  height: 480px;
+  top: 55%;
+  left: 90%;
+  animation-delay: 9s;
+  box-shadow: 0 0 50px rgba(0, 44, 82, 0.4);
+}
+
+
+/* Keyframes for a very subtle, gentle movement */
+@keyframes premium-gradient-animation {
+  0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 0.2; }
+  25% { transform: translate(-48%, -52%) scale(1.01) rotate(1deg); opacity: 0.32; }
+  50% { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 0.2; }
+  75% { transform: translate(-52%, -48%) scale(0.99) rotate(-1deg); opacity: 0.18; }
+  100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 0.2; }
+}
+
+
+/* --- Your existing mouse follower styles --- */
+.mouse-follower {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(67, 198, 172, 0.4) 0%, transparent 70%);
+  filter: blur(5px);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 100;
+  transition: transform 0.1s ease-out;
+}
+
+/* --- Re-evaluate your original blobs --- */
+/*
+  If you want them as "shaded, premium," consider:
+  - Reducing their filter blur slightly (e.g., blur(40px) or blur(50px))
+  - Changing their mix-blend-mode to 'screen' or 'lighten' if they are meant to add light
+  - Adjusting their colors to fit the premium palette
+  - Potentially adding a subtle box-shadow
+*/
+/*
+  Example for your pink blob if you want it to look premium and shaded:
+.animate-blob {
+  animation: blob-animation 7s infinite;
+}
+
+@keyframes blob-animation {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.05); } // slightly more scale
+  66% { transform: translate(-20px, 20px) scale(0.95); } // slightly less scale
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+*/

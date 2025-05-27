@@ -95,10 +95,7 @@ export default function Name() {
       ref={sectionRef}
       className="flex flex-col w-full min-h-screen justify-center px-4 sm:px-8 md:px-12 lg:px-15 xl:px-20 relative overflow-hidden" // Ensure overflow-hidden for parallax
     >
-      {/* Background elements can go here if you have any static ones that move with the page */}
-      {/* Or dynamic ones that move even slower than content */}
 
-      {/* Content wrapper with parallax effect */}
       <motion.div style={{ y: yContent }} className="relative z-10">
         {/* Hello, I'm section */}
         <motion.div
@@ -127,7 +124,7 @@ export default function Name() {
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
               custom={i} // Pass index for staggered delay
-              className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 transition-all duration-300 ease-out" // Removed hover scale here for subtle animation
+              className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-[#155050] to-[#08d497] transition-all duration-300 ease-out" // Removed hover scale here for subtle animation
             >
               {char === " " ? "\u00A0" : char}
             </motion.span>
