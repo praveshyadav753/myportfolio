@@ -5,7 +5,7 @@ import './shapecard.css';
 
 // Reusable component for the base card shape
 const ShapedCard = ({
-  width = 320, // Default width
+  width = 310, // Default width
   height = 'auto', // Auto height, or provide specific height
   title,       // Text for the tab
   children,    // Content inside the card
@@ -39,7 +39,7 @@ const ShapedCard = ({
   return (
     <div
       ref={ref} // Attach ref to the outermost div for glow detection
-      className={`relative carddiv w-[340px] sm:w-[380px] md:w-[430px] lg:w-[500px]   ${className}`}
+      className={`relative carddiv w-[320px] sm:w-[380px] md:w-[430px] lg:w-[500px]   ${className}`}
       style={{
        
         height: height === 'auto' ? 'auto' : `${height}px`,

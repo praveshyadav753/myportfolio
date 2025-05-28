@@ -12,6 +12,8 @@ const skillsData = [
   { name: 'Django', level: 60 },
   { name: 'MySQL', level: 80 },
   { name: 'REST API', level: 50 },
+   { name: 'Tailwind CSS', level: 95 },
+   { name: 'Figma', level: 90 },
 ];
 
 const SkillBar = ({ skill, level, index }) => {
@@ -60,8 +62,8 @@ const SkillsCard = () => {
         type: "spring",
         damping: 20,
         stiffness: 100,
-        duration: 0.5, // Duration in seconds
-        delay: 0.1,    // Delay before card reveal
+        duration: 0.5, 
+        delay: 0.1,    
       },
     },
   };
@@ -72,12 +74,12 @@ const SkillsCard = () => {
       initial="hidden"
       whileInView="visible"
      
-      viewport={{ once: false, amount: 0.2 }} 
+      viewport={{ once: false, amount: 0.4 }} 
       className="inline-block"
     >
       <ShapedCard
         title="SKILLS"
-        height={360}
+        height={440}
         cardBgColor="#1A2B3D"
         cardBorderColor="#00C8FF"
         tabBgColor="#007bff"

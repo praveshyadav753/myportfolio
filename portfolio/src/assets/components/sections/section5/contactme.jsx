@@ -154,7 +154,7 @@ const ContactSection = () => {
           variants={itemStaggerVariants} // Use stagger for sub-elements
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="bg-gray-800 rounded-xl shadow-2xl p-8 md:p-12 flex flex-col lg:flex-row gap-12 border border-gray-700 backdrop-filter backdrop-blur-sm bg-opacity-70"
+          className="bg-transparent rounded-xl shadow-2xl p-8 md:p-12 flex flex-col lg:flex-row gap-12 border border-gray-700 backdrop-filter backdrop-blur-sm bg-opacity-70"
         >
           {/* Left Side: Contact Info */}
           <motion.div 
@@ -225,7 +225,7 @@ const ContactSection = () => {
                   id="name" 
                   name="name" 
                   required 
-                  className="w-full p-3 rounded-md bg-gray-700 text-white border border-gray-600 focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50 outline-none transition-all duration-300" 
+                  className="w-full p-3 rounded-md  text-white border border-gray-600 focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50 outline-none transition-all duration-300" 
                 />
               </div>
               <div>
@@ -235,7 +235,7 @@ const ContactSection = () => {
                   id="email" 
                   name="email" 
                   required 
-                  className="w-full p-3 rounded-md bg-gray-700 text-white border border-gray-600 focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50 outline-none transition-all duration-300" 
+                  className="w-full p-3 rounded-md  text-white border border-gray-600 focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50 outline-none transition-all duration-300" 
                 />
               </div>
               <div>
@@ -245,7 +245,7 @@ const ContactSection = () => {
                   name="message" 
                   rows="5" 
                   required 
-                  className="w-full p-3 rounded-md bg-gray-700 text-white border border-gray-600 focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50 outline-none resize-y transition-all duration-300"
+                  className="w-full p-3 rounded-md backdrop-blur-md text-white border border-gray-600 focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50 outline-none resize-y transition-all duration-300"
                 ></textarea>
               </div>
               <motion.button
