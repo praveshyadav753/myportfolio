@@ -58,8 +58,9 @@ technologies: ['React.js', 'Django', 'Tailwind CSS', 'PostgreSQL','Jwt Authentic
 
   const positionCards = useCallback(
     (index, customCenter = center) => {
-      const radiusX = Math.min(customCenter.x - 200, 1000);
-      const radiusY = Math.min(customCenter.y - 100, 500);
+      // const radiusX = Math.max(customCenter.x , 1000);
+     const radiusX=2000
+      const radiusY = Math.min(customCenter.y - 70, 500);
 
       cardRefs.current.forEach((card, i) => {
         if (!card) return;
@@ -75,10 +76,10 @@ technologies: ['React.js', 'Django', 'Tailwind CSS', 'PostgreSQL','Jwt Authentic
 
         if (Math.abs(currentX - x) > 2 || Math.abs(currentY - y) > 2) {
           gsap.to(card, {
-            duration: 0.8,
+            duration: 1,
             x,
             y,
-            ease: 'power3.out',
+            ease: 'ease',
             transformOrigin: '50% 50%',
             overwrite: 'auto',
           });
@@ -136,7 +137,7 @@ technologies: ['React.js', 'Django', 'Tailwind CSS', 'PostgreSQL','Jwt Authentic
   return (
     <div id='projects' ref={containerRef} className="relative w-full h-screen flex flex-col items-center justify-center bg-gray-900 overflow-hidden">
       {/* Semi-circular background base */}
-      <div className="absolute bottom-0 w-4/5 h-1/2 bg-gradient-to-t from-gray-900 via-blue-900 to-transparent  rounded-t-full origin-bottom  transform-gpu z-0"></div>
+      {/* <div className="absolute bottom-[-10] w-4/5 h-1/2 bg-gradient-to-t from-gray-900 via-blue-900 to-transparent  rounded-t-full origin-bottom  transform-gpu z-0"></div> */}
 
       <div className="relative p-2 w-full h-screen flex flex-col items-center">
         <h2 className="text-white text-3xl md:text-5xl font-bold mb-10 text-center z-10 relative">
@@ -148,7 +149,7 @@ technologies: ['React.js', 'Django', 'Tailwind CSS', 'PostgreSQL','Jwt Authentic
           <div
             key={index}
             ref={(el) => (cardRefs.current[index] = el)}
-            className="w-[340px] h-[420px] absolute"
+            className="w-[300] md:w-[340px] h-[420px] absolute"
             style={{ top: 0, left: 0, transform: 'translate(-50%, -50%)', willChange: 'transform' }}
           >
             <ProjectCard project={project} isActive={index === activeIndex} />

@@ -8,6 +8,7 @@ import AboutSection from "./section4/AboutMe";
 import ContactSection from "./section5/contactme";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Navbar from "../navbar/navbar"
 
 function Sections() {
   const herosection = useRef(null);
@@ -23,19 +24,19 @@ function Sections() {
         start: "top 30% ",
         end: "bottom bottom",
         scrub: 1,
-        markers: true,
+        markers: false,
       },
     });
 
     ScrollTrigger.create({
       trigger: sectionmain.current,
-      start: "1% top ",
+      start: "top top ",
       end: "bottom bottom",
-      scrub: 0.1,
+      scrub: 1,
       markers: false,
        snap: {
         snapTo: 1, 
-        duration: 0.1,
+        duration: 0.3,
         ease: "power2.inOut", // A good ease for snapping
       },
       
@@ -50,7 +51,8 @@ function Sections() {
 
   return (
     <>
-      <div className="element z-10 absolute top-0 w-full pointer-events-none">
+      <Navbar/>
+      <div className="element z-10 absolute top-0 w-full pointer-events-none hidden md:block">
         <HeroSection />
       </div>
       <div className="Section1 h-[200vh]" ref={sectionmain}>

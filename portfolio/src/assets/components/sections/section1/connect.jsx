@@ -75,7 +75,7 @@ const LetsConnect = () => {
       className="mt-5 relative z-10 h-10"
       ref={wrapperRef}
     >
-      <div className="flex flex-col w-fit items-start gap-5">
+      <div className="flex flex-col w-full items-center md:items-start gap-5">
         {/* Main button */}
         <motion.button
           onClick={() => setIsOpen(!isOpen)}

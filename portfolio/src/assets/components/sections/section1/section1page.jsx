@@ -46,7 +46,7 @@ function Section1() {
       <div className="premium-shaded-gradient premium-gradient-3" style={{ zIndex: 1 }} />
       <div className="premium-shaded-gradient premium-gradient-4" style={{ zIndex: 1 }} />        
       <div className="relative z-10 w-full h-full flex items-center justify-center p-4">
-        <div className="absolute md:left-[0] md:translate-x-0 md:top-[0] md:bottom-[20%]">
+        <div className="absolute w-full md:left-[0] md:translate-x-0 md:top-[0] md:bottom-[20%]">
           <Name />
         </div>
         <div className=" herosection absolute top-0 right-[-150px] w-screen h-screen z-2 hidden sm:block">

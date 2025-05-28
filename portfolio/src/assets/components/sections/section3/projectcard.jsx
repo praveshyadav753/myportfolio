@@ -6,16 +6,16 @@ const ProjectCard = ({ project, isActive }) => {
   return (
     <div
       className={`
-        relative w-full max-w-[340px] max-h-[425px] rounded-lg p-4 flex flex-col justify-between
+        relative w-[300] max-w-[340px] max-h-[425px] rounded-lg p-4 flex flex-col justify-between
         transition-all duration-300 ease-in-out transform
-        ${isActive ? 'scale-100 shadow-xl ring-4 ring-blue-400' : 'scale-80 opacity-40'}
+        ${isActive ? 'scale-100 md:shadow-xl ring-4 md:ring-blue-400' : 'scale-80 opacity-40'}
       `}
       style={{
         backgroundColor: '#1a2b3d',
         border: '2px solid #00C8FF',
         color: 'white',
         textAlign: 'center',
-        boxShadow: isActive ? '0 7px 100px #00C8FF, 0 0 1px #00C8FF' : 'none',
+        boxShadow: isActive ? '0 0px 10px #00C8FF, 0 0 1px #00C8FF' : 'none',
         overflow: 'hidden',
       }}
     >
