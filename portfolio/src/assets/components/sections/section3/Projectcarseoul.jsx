@@ -7,43 +7,43 @@ gsap.registerPlugin(ScrollTrigger);
 
 const RadialProjectList = () => {
   const projects = [
-  {
-    id: 1,
-    title: 'QuickServe',
-    description: 'A service booking platform that allows users to register, book services, and manage appointments. Includes admin panel and service provider registration.',
-    imageUrl: '/Quickserve.png',
-technologies: ['React.js', 'Django', 'Tailwind CSS', 'PostgreSQL','Jwt Authentication'],
-    liveUrl: 'https://example.com/quickserve',
-    githubUrl: 'https://github.com/praveshyadav753/QuickServe_App'
-  },
-  {
-    id: 2,
-    title: 'SmartBites',
-    description: 'A mobile web app that provides nutrition facts, ingredients, and health ratings for products. Features barcode scanning and personalized recommendations.',
-    imageUrl: '/smartbites.png',
-    technologies: ['React.js', 'Django', 'Tailwind CSS', 'Restful API'],
-    liveUrl: 'https://smartbites-alpha.vercel.app/',
-    githubUrl: 'https://github.com/praveshyadav753/Smartbites'
-  },
-  {
-    id: 3,
-    title: 'ParkIt',
-    description: 'A web-based car parking management system featuring real-time slot monitoring, surveillance integration, and automated parking using EasyOCR for number plate recognition.',
-    imageUrl: '/boutme.png',
-    technologies: ['Python', 'yolov5', 'EasyOCR', 'HTML', 'CSS', 'JavaScript'],
-    liveUrl: 'https://example.com/parkit',
-    githubUrl: 'https://github.com/praveshyadav753/advance-parking-management-system'
-  },
-  {
-    id: 4,
-    title: 'Music Player System',
-    description: 'A modern music player with support for audio playback, playlist management, shuffle, repeat, and volume control using the HTML5 Audio API.',
-    imageUrl: '/forground.png',
-    technologies: ['Html', 'HTML5 Audio', 'Css', 'JavaScript'],
-    liveUrl: 'https://example.com/music-player',
-    githubUrl: 'https://github.com/praveshyadav753/music--player'
-  }
-];
+    {
+      id: 1,
+      title: 'QuickServe',
+      description: 'A service booking platform that allows users to register, book services, and manage appointments. Includes admin panel and service provider registration.',
+      imageUrl: '/Quickserve.png',
+      technologies: ['React.js', 'Django', 'Tailwind CSS', 'PostgreSQL','Jwt Authentication'],
+      liveUrl: 'https://example.com/quickserve',
+      githubUrl: 'https://github.com/praveshyadav753/QuickServe_App'
+    },
+    {
+      id: 2,
+      title: 'SmartBites',
+      description: 'A mobile web app that provides nutrition facts, ingredients, and health ratings for products. Features barcode scanning and personalized recommendations.',
+      imageUrl: '/smartbites.png',
+      technologies: ['React.js', 'Django', 'Tailwind CSS', 'Restful API'],
+      liveUrl: 'https://smartbites-alpha.vercel.app/',
+      githubUrl: 'https://github.com/praveshyadav753/Smartbites'
+    },
+    {
+      id: 3,
+      title: 'ParkIt',
+      description: 'A web-based car parking management system featuring real-time slot monitoring, surveillance integration, and automated parking using EasyOCR for number plate recognition.',
+      imageUrl: '/boutme.png',
+      technologies: ['Python', 'yolov5', 'EasyOCR', 'HTML', 'CSS', 'JavaScript'],
+      liveUrl: 'https://example.com/parkit',
+      githubUrl: 'https://github.com/praveshyadav753/advance-parking-management-system'
+    },
+    {
+      id: 4,
+      title: 'Music Player System',
+      description: 'A modern music player with support for audio playback, playlist management, shuffle, repeat, and volume control using the HTML5 Audio API.',
+      imageUrl: '/forground.png',
+      technologies: ['Html', 'HTML5 Audio', 'Css', 'JavaScript'],
+      liveUrl: 'https://example.com/music-player',
+      githubUrl: 'https://github.com/praveshyadav753/music--player'
+    }
+  ];
 
   const containerRef = useRef(null);
   const cardRefs = useRef([]);
@@ -58,9 +58,8 @@ technologies: ['React.js', 'Django', 'Tailwind CSS', 'PostgreSQL','Jwt Authentic
 
   const positionCards = useCallback(
     (index, customCenter = center) => {
-      // const radiusX = Math.max(customCenter.x , 1000);
-     const radiusX=2000
-      const radiusY = Math.min(customCenter.y - 70, 500);
+      const radiusX = 2000;
+      const radiusY = Math.min(customCenter.y - 70, window.innerHeight / 1.2); // Use window.innerHeight here
 
       cardRefs.current.forEach((card, i) => {
         if (!card) return;
@@ -80,7 +79,7 @@ technologies: ['React.js', 'Django', 'Tailwind CSS', 'PostgreSQL','Jwt Authentic
             x,
             y,
             ease: 'ease',
-            transformOrigin: '50% 50%',
+            transformOrigin: '51% 50%',
             overwrite: 'auto',
           });
         }
@@ -94,7 +93,6 @@ technologies: ['React.js', 'Django', 'Tailwind CSS', 'PostgreSQL','Jwt Authentic
     positionCards(activeIndex);
   }, [activeIndex, positionCards]);
 
-  ScrollTrigger
   useEffect(() => {
     let lastIndex = -1;
 
@@ -104,7 +102,7 @@ technologies: ['React.js', 'Django', 'Tailwind CSS', 'PostgreSQL','Jwt Authentic
         start: 'top top',
         end: `+=${projects.length * 100}`,
         pin: true,
-        scrub: true,
+        scrub: 0.5,
         onUpdate: (self) => {
           const scrollProgress = self.progress;
           const index = Math.floor(scrollProgress * (projects.length - 1));
@@ -134,11 +132,12 @@ technologies: ['React.js', 'Django', 'Tailwind CSS', 'PostgreSQL','Jwt Authentic
     return () => window.removeEventListener('resize', updateLayout);
   }, [activeIndex, positionCards]);
 
+  // Determine if buttons should be disabled
+  const isPrevDisabled = activeIndex === 0;
+  const isNextDisabled = activeIndex === projects.length - 1;
+
   return (
     <div id='projects' ref={containerRef} className="relative w-full h-screen flex flex-col items-center justify-center bg-gray-900 overflow-hidden">
-      {/* Semi-circular background base */}
-      {/* <div className="absolute bottom-[-10] w-4/5 h-1/2 bg-gradient-to-t from-gray-900 via-blue-900 to-transparent  rounded-t-full origin-bottom  transform-gpu z-0"></div> */}
-
       <div className="relative p-2 w-full h-screen flex flex-col items-center">
         <h2 className="text-white text-3xl md:text-5xl font-bold mb-10 text-center z-10 relative">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400 hidden md:inline"> What I Have Built</span>
@@ -157,10 +156,11 @@ technologies: ['React.js', 'Django', 'Tailwind CSS', 'PostgreSQL','Jwt Authentic
         ))}
 
         {/* Optional manual nav buttons */}
-        <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-10 md:space-x-40">
+        <div className="absolute w-[200px] sm:w-[320] bottom-5 left-1/2 transform -translate-x-1/2 flex justify justify-between ">
           <button
             onClick={() => setActiveIndex((i) => Math.max(0, i - 1))}
-            className="p-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg"
+            className={`p-3 rounded-full bg-blue-600 text-white shadow-lg ${isPrevDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-700'}`}
+            disabled={isPrevDisabled}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
@@ -168,7 +168,8 @@ technologies: ['React.js', 'Django', 'Tailwind CSS', 'PostgreSQL','Jwt Authentic
           </button>
           <button
             onClick={() => setActiveIndex((i) => Math.min(projects.length - 1, i + 1))}
-            className="p-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg"
+            className={`p-3 rounded-full bg-blue-600 text-white shadow-lg ${isNextDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-700'}`}
+            disabled={isNextDisabled}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />

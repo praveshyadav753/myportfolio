@@ -5,7 +5,7 @@ import './shapecard.css';
 
 // Reusable component for the base card shape
 const ShapedCard = ({
-  width = 350, // Default width
+  width = 320, // Default width
   height = 'auto', // Auto height, or provide specific height
   title,       // Text for the tab
   children,    // Content inside the card
