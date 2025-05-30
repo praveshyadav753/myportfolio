@@ -19,7 +19,7 @@ const RadialProjectList = () => {
             description: 'A service booking platform that allows users to register, book services, and manage appointments. Includes admin panel and service provider registration.',
             imageUrl: '/Quickserve.png',
             technologies: ['React.js', 'Django', 'Tailwind CSS', 'PostgreSQL', 'Jwt Authentication'],
-            liveUrl: 'https://example.com/quickserve',
+            liveUrl: 'https://quickserve-pi.vercel.app/',
             githubUrl: 'https://github.com/praveshyadav753/QuickServe_App'
         },
         {
@@ -35,7 +35,7 @@ const RadialProjectList = () => {
             id: 3,
             title: 'ParkIt',
             description: 'A web-based car parking management system featuring real-time slot monitoring, surveillance integration, and automated parking using EasyOCR for number plate recognition.',
-            imageUrl: '/boutme.png',
+            imageUrl: '/PARKING.png',
             technologies: ['Python', 'yolov5', 'EasyOCR', 'HTML', 'CSS', 'JavaScript'],
             liveUrl: 'https://example.com/parkit',
             githubUrl: 'https://github.com/praveshyadav753/advance-parking-management-system'
@@ -44,7 +44,7 @@ const RadialProjectList = () => {
             id: 4,
             title: 'Music Player System',
             description: 'A modern music player with support for audio playback, playlist management, shuffle, repeat, and volume control using the HTML5 Audio API.',
-            imageUrl: '/forground.png',
+            imageUrl: '/musicplayer.png',
             technologies: ['Html', 'HTML5 Audio', 'Css', 'JavaScript'],
             liveUrl: 'https://example.com/music-player',
             githubUrl: 'https://github.com/praveshyadav753/music--player'
